@@ -1,1 +1,860 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Vektorix Automation: Soluciones de automatización industrial para reducir costos y aumentar producción.">
+<title>Vektorix Automation | Automatización Industrial</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+body {
+    background: #fff;
+    color: #111;
+    line-height: 1.6;
+}
+/* NAVBAR */
+.navbar {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 60px;
+    background: #fff;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+.navbar.small {
+    padding: 12px 60px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+.navbar-left {
+    display: flex;
+    align-items: center;
+}
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+.logo-img {
+    height: 50px;
+    width: auto;
+    display: block;
+}
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+.nav-links a {
+    text-decoration: none;
+    color: #111;
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+.nav-links a:hover {
+    color: #007BFF;
+}
+.social {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.social a {
+    color: #111;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+.social a:hover {
+    color: #007BFF;
+}
+/* HERO */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('Imagen_principal.png') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+.hero h1 {
+    font-size: clamp(40px, 5vw, 60px);
+    max-width: 900px;
+    margin-bottom: 20px;
+}
+.hero p {
+    font-size: clamp(18px, 3vw, 22px);
+    margin-bottom: 30px;
+}
+.hero button {
+    padding: 18px 40px;
+    font-size: 18px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,123,255,0.4);
+    transition: all 0.3s;
+}
+.hero button:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
+/* SECTIONS */
+.section {
+    display: none;
+    padding-top: 100px;
+}
+.active {
+    display: block;
+}
+/* ANIMATIONS */
+.fade {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s ease-out;
+}
+.fade.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* WHY */
+.why {
+    padding: 60px;
+    text-align: center;
+    background: #f8f8f8;
+}
+.why h2 {
+    margin-bottom: 20px;
+    font-size: 2.5em;
+}
+/* PORTFOLIO */
+.portfolio {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 60px;
+}
+.project {
+    height: 250px;
+    background-size: cover;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+.project:hover {
+    transform: scale(1.05);
+}
+/* CTA - UNIFIED SECTION */
+.cta {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+    color: white;
+    padding: 100px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.1), transparent);
+    pointer-events: none;
+}
+.cta h2 {
+    font-size: clamp(2em, 5vw, 2.8em);
+    margin-bottom: 15px;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+    letter-spacing: -0.5px;
+}
+.cta-subtitle {
+    font-size: clamp(1em, 3vw, 1.2em);
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+    font-weight: 300;
+    opacity: 0.95;
+}
+.cta-description {
+    font-size: 1.05em;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 300;
+    opacity: 0.9;
+}
+/* CONTACT OPTIONS IN CTA */
+.contact-options {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    padding: 0;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 50px;
+}
+.contact-card {
+    width: 280px;
+    padding: 35px 25px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.1);
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: 2px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 250px;
+}
+.contact-card:hover {
+    transform: translateY(-15px);
+    background: rgba(255,255,255,0.18);
+    border-color: rgba(255,255,255,0.35);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}
+.contact-card i {
+    font-size: 50px;
+    margin-bottom: 15px;
+    color: white;
+    transition: all 0.3s;
+}
+.contact-card:hover i {
+    transform: scale(1.15);
+}
+.contact-card h3 {
+    color: white;
+    margin-bottom: 8px;
+    font-size: 1.4em;
+    font-weight: 600;
+}
+.contact-card p {
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 20px;
+    font-size: 0.95em;
+}
+.contact-card button, .contact-card a button {
+    padding: 12px 28px;
+    background: white;
+    color: #0f172a;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+.contact-card button:hover, .contact-card a button:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+/* FORM (inside CTA) */
+.contact-form {
+    padding: 50px;
+    max-width: 550px;
+    margin: auto;
+    background: rgba(255,255,255,0.95);
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+    position: relative;
+    z-index: 1;
+}
+.contact-form:hover {
+    box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+}
+.contact-form h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #111;
+    font-size: 1.8em;
+    font-weight: 700;
+}
+.form-group {
+    position: relative;
+    margin-bottom: 22px;
+}
+.form-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #0f172a;
+    font-size: 18px;
+}
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 15px 15px 15px 45px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    background: #fff;
+    transition: all 0.3s;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+    border-color: #0f172a;
+    box-shadow: 0 0 12px rgba(15, 23, 42, 0.15);
+    outline: none;
+}
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+.contact-form button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #0f172a, #1e3a5f);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.contact-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(15, 23, 42, 0.3);
+}
+/* SERVICES */
+.services-banner {
+    height: 300px;
+    background: url('Banner_servicios.png') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+}
+.services-hero {
+    height: 450px;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('Banner_servicios.png') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    position: relative;
+}
+.services-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+.services-hero h1 {
+    font-size: clamp(2.5em, 6vw, 3.5em);
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+.services-hero p {
+    font-size: clamp(1.1em, 3vw, 1.4em);
+    font-weight: 300;
+    opacity: 0.95;
+}
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.service {
+    padding: 30px;
+    border-radius: 15px;
+    background: #f8f8f8;
+    transition: all 0.3s;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.service:nth-child(5) {
+    grid-column: 1 / -1;
+    max-width: 280px;
+    margin: 0 auto;
+}
+.service:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.service i {
+    font-size: 40px;
+    margin-bottom: 15px;
+    color: #007BFF;
+}
+.service button {
+    margin-top: 15px;
+    padding: 8px 18px;
+    border: none;
+    background: #111;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 0.9em;
+    width: auto;
+    align-self: center;
+}
+.service button:hover {
+    background: #333;
+}
+/* ABOUT */
+.about-banner {
+    height: 500px; /* más alto para que no se corte tanto */
+    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('Baner_sobrenosotros.png') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    position: relative;
+}
+.about-banner-content {
+    position: relative;
+    z-index: 1;
+    max-width: 820px;
+}
+.about-banner h1 {
+    font-size: clamp(2.5em, 6vw, 3.5em); /* mismo tamaño que services hero */
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+.about-banner p {
+    font-size: clamp(1.1em, 3vw, 1.4em); /* mismo formato que services hero */
+    font-weight: 300;
+    opacity: 0.95;
+    line-height: 1.4;
+}
+.about-content {
+    padding: 60px;
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
+.about-content h2 {
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    color: #111;
+}
+.about-content p {
+    margin-bottom: 40px;
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #555;
+}
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 40px;
+}
+.about-card {
+    padding: 30px;
+    background: #f8f8f8;
+    border-radius: 15px;
+    transition: all 0.3s;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.about-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.about-card i {
+    font-size: 40px;
+    margin-bottom: 15px;
+    color: #007BFF;
+}
+.about-card h3 {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    color: #111;
+}
+.about-card p {
+    font-size: 1em;
+    line-height: 1.5;
+    color: #555;
+}
+.about-card ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+.about-card li {
+    margin-bottom: 10px;
+    font-size: 0.95em;
+    color: #555;
+}
+.about-card li strong {
+    color: #007BFF;
+}
+.about-card:nth-child(3) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 50%;
+}
+.valor {
+    text-align: center;
+    margin-bottom: 15px;
+}
+.valor h4 {
+    font-weight: bold;
+    color: #007BFF;
+    margin-bottom: 5px;
+    font-size: 1em;
+}
+.valor p {
+    font-size: 0.9em;
+    color: #555;
+    line-height: 1.4;
+}
+/* FOOTER */
+.footer {
+    background: #111;
+    color: white;
+    padding: 40px;
+    text-align: center;
+}
+.footer p {
+    margin-bottom: 10px;
+}
+.footer .social {
+    justify-content: center;
+}
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+    .navbar-left {
+        gap: 15px;
+    }
+    .nav-links {
+        display: none;
+    }
+    .hero h1 {
+        font-size: 40px;
+    }
+    .services, .portfolio {
+        grid-template-columns: 1fr;
+        padding: 30px;
+    }
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+    .contact-form {
+        padding: 30px;
+    }
+    .cta {
+        padding: 60px 30px;
+    }
+    .contact-options {
+        margin-bottom: 30px;
+    }
+    .contact-card {
+        width: 100%;
+    }
+}
+</style>
+</head>
+<body>
+<div class="navbar" id="navbar">
+    <div class="navbar-left">
+        <div class="logo">
+            <a onclick="showSection('home')" style="cursor: pointer;">
+                <img src="logo_vektorix.png" alt="Vektorix Automation" class="logo-img">
+            </a>
+        </div>
+    </div>
+    <div class="navbar-right">
+        <div class="nav-links">
+            <a onclick="showSection('home')">Inicio</a>
+            <a onclick="showSection('services')">Servicios</a>
+            <a onclick="showSection('about')">Nosotros</a>
+        </div>
+        <div class="social">
+            <a href="https://linkedin.com/company/vektorix-automation" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://wa.me/18495771497" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://facebook.com/vektorix-automation" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://instagram.com/vektorix_automation" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</div>
+<!-- HOME -->
+<div id="home" class="section active">
+    <div class="hero">
+        <div>
+            <h1>Reducimos costos industriales. Aumentamos tu producción.</h1>
+            <p>No vendemos tecnología. Entregamos resultados medibles.</p>
+            <button onclick="showSection('contact-options')">Solicitar cotización</button>
+        </div>
+    </div>
+    <div class="why fade">
+        <h2>¿Por qué elegirnos?</h2>
+        <p><strong>No somos un proveedor más.</strong> Somos el equipo que elimina ineficiencias, automatiza procesos y hace que tu operación produzca más con menos.</p>
+    </div>
+    <div class="portfolio fade">
+        <div class="project" style="background-image: url('Diseno_de_maquinaria.png');"></div>
+        <div class="project" style="background-image: url('Vision_artificial.png');"></div>
+        <div class="project" style="background-image: url('Asesoria_profesional.png');"></div>
+    </div>
+    <div class="cta fade">
+        <h2>Tu competencia ya se está automatizando</h2>
+        <p class="cta-subtitle"><strong>No te quedes atrás</strong>. Empieza hoy.</p>
+        <p class="cta-description">Contáctanos por email o WhatsApp y descubre cómo Vektorix Automation puede transformar tu operación. Nuestro equipo está listo para ayudarte.</p>
+        
+        <div class="contact-options">
+            <div class="contact-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>Nos pondremos en contacto contigo</p>
+                <button onclick="showSection('contact-form')">Enviar correo</button>
+            </div>
+            <div class="contact-card">
+                <i class="fab fa-whatsapp"></i>
+                <h3>WhatsApp</h3>
+                <p>Te responderemos de inmediato</p>
+                <a href="https://wa.me/18495771497" target="_blank">
+                    <button>Escribir ahora</button>
+                </a>
+            </div>
+        </div>
+        
+        <div id="contact-form" class="contact-form fade" style="display: none;">
+            <h2>Envíanos un mensaje</h2>
+            <form onsubmit="enviar(event)">
+                <div class="form-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="nombre" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" placeholder="Tu email" required>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-comment"></i>
+                    <textarea id="mensaje" placeholder="Tu mensaje" rows="5" required></textarea>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- SERVICES -->
+<div id="services" class="section">
+    <div class="services-hero">
+        <div class="services-hero-content">
+            <h1>Nuestros Servicios</h1>
+            <p>Soluciones integrales de automatización diseñadas para tu industria</p>
+        </div>
+    </div>
+    <div class="services fade">
+        <div class="service">
+            <i class="fas fa-cogs"></i>
+            <h3>Automatización Industrial</h3>
+            <p>Optimiza procesos, reduce errores y baja costos operativos.</p>
+            <button onclick="cotizar('Automatización')">Cotizar</button>
+        </div>
+        <div class="service">
+            <i class="fas fa-industry"></i>
+            <h3>Diseño de Maquinaria</h3>
+            <p>Equipos personalizados adaptados a tu producción.</p>
+            <button onclick="cotizar('Maquinaria')">Cotizar</button>
+        </div>
+        <div class="service">
+            <i class="fas fa-robot"></i>
+            <h3>Robótica Industrial</h3>
+            <p>Automatiza tareas repetitivas y aumenta productividad.</p>
+            <button onclick="cotizar('Robótica')">Cotizar</button>
+        </div>
+        <div class="service">
+            <i class="fas fa-eye"></i>
+            <h3>Visión Artificial</h3>
+            <p>Control de calidad automatizado con precisión total.</p>
+            <button onclick="cotizar('Vision')">Cotizar</button>
+        </div>
+        <div class="service">
+            <i class="fas fa-chart-line"></i>
+            <h3>Asesoría Profesional</h3>
+            <p>Detectamos pérdidas y optimizamos tu operación.</p>
+            <button onclick="cotizar('Asesoria')">Cotizar</button>
+        </div>
+    </div>
+</div>
+<!-- ABOUT -->
+<div id="about" class="section">
+    <div class="about-banner">
+        <div class="about-banner-content">
+            <h1>Sobre Nosotros</h1>
+            <p>En Vektorix Automation desarrollamos soluciones industriales que aumentan productividad y reducen costos reales.</p>
+        </div>
+    </div>
+    <div class="about-content fade">
+        <h2>Ingeniería que genera resultados</h2>
+        <p>En Vektorix Automation somos una empresa orientada a la innovación tecnológica industrial, especializada en el desarrollo de soluciones de automatización, robótica y sistemas inteligentes. Nos enfocamos en transformar procesos tradicionales en sistemas eficientes, seguros y escalables.</p>
+        
+        <div class="about-grid">
+            <div class="about-card">
+                <i class="fas fa-bullseye"></i>
+                <h3>Misión</h3>
+                <p>Desarrollar e implementar soluciones tecnológicas innovadoras en automatización industrial, robótica y sistemas inteligentes, que optimicen los procesos productivos de nuestros clientes y promuevan la transformación digital de la industria.</p>
+            </div>
+            <div class="about-card">
+                <i class="fas fa-eye"></i>
+                <h3>Visión</h3>
+                <p>Ser una empresa líder en automatización industrial y desarrollo tecnológico en la región, reconocida por la calidad, innovación y eficiencia de nuestras soluciones.</p>
+            </div>
+            <div class="about-card">
+                <i class="fas fa-heart"></i>
+                <h3>Valores</h3>
+                <div class="valor">
+                    <h4>Innovación</h4>
+                    <p>Siempre a la vanguardia tecnológica.</p>
+                </div>
+                <div class="valor">
+                    <h4>Compromiso</h4>
+                    <p>Dedicación total a nuestros clientes.</p>
+                </div>
+                <div class="valor">
+                    <h4>Responsabilidad</h4>
+                    <p>Ética y sostenibilidad en cada proyecto.</p>
+                </div>
+                <div class="valor">
+                    <h4>Orientación al cliente</h4>
+                    <p>Soluciones personalizadas.</p>
+                </div>
+                <div class="valor">
+                    <h4>Mejora continua</h4>
+                    <p>Evolución constante de nuestros procesos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <p>© 2026 Vektorix Automation</p>
+    <p>Vektorix Automation es una empresa especializada en automatización industrial, diseño de maquinaria y soluciones tecnológicas enfocadas en aumentar la productividad y reducir costos operativos. Trabajamos con enfoque en resultados medibles y eficiencia real.</p>
+    <div class="social">
+        <a href="https://linkedin.com/company/vektorix-automation" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://instagram.com/vektorix_automation" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+</div>
+<script>
+function showSection(id) {
+    if (id === 'contact-form') {
+        // Mostrar el formulario dentro de la sección home
+        document.getElementById('contact-form').style.display = 'block';
+        // Desplazarse suavemente al formulario
+        setTimeout(() => {
+            document.getElementById('contact-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+        return;
+    }
+    
+    if (id === 'contact-options') {
+        // Primero asegurar que home está activo
+        document.querySelectorAll('.section').forEach(sec => {
+            sec.classList.remove('active');
+        });
+        document.getElementById('home').classList.add('active');
+        
+        // Desplazarse a las opciones de contacto sin mostrar el formulario
+        document.getElementById('contact-form').style.display = 'none';
+        setTimeout(() => {
+            document.querySelector('.contact-options').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 100);
+        return;
+    }
+    
+    document.querySelectorAll('.section').forEach(sec => {
+        sec.classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
+    document.getElementById('contact-form').style.display = 'none';
+}
 
+/* NAVBAR */
+window.addEventListener('scroll', () => {
+    let nav = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+        nav.classList.add('small');
+    } else {
+        nav.classList.remove('small');
+    }
+});
+
+/* ANIMACIONES */
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+    });
+});
+document.querySelectorAll('.fade').forEach(el => {
+    observer.observe(el);
+});
+
+/* COTIZAR */
+function cotizar(servicio) {
+    // Guardar el servicio en sessionStorage
+    sessionStorage.setItem('servicio', servicio);
+    // Ir a la sección de opciones de contacto (automáticamente va a home)
+    showSection('contact-options');
+}
+
+/* ENVIAR */
+function enviar(event) {
+    event.preventDefault();
+    const nombre = document.getElementById('nombre').value;
+    const email = document.getElementById('email').value;
+    const mensaje = document.getElementById('mensaje').value;
+    if (nombre && email && mensaje) {
+        alert("Solicitud enviada. Nos contactaremos contigo.");
+        // Limpiar el formulario
+        document.getElementById('nombre').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('mensaje').value = '';
+        // Limpiar sessionStorage
+        sessionStorage.removeItem('servicio');
+    } else {
+        alert("Por favor, completa todos los campos.");
+    }
+}
+</script>
+</body>
+</html>
